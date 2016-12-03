@@ -1,0 +1,14 @@
+doctype html
+html(ng-app="stats")
+
+  head
+    title= title
+    link(rel='stylesheet', href='/stylesheets/style.css')
+    link(rel='stylesheet', href='/stylesheets/bootstrap.min.css')
+    link(rel='stylesheet', href='/stylesheets/bootstrap-theme.min.css')
+  body(ng-controller="StatsController as stats")
+    block content
+    script(src='javascripts/angular.min.js')
+    script(src='javascripts/index.js')
+    script(src='javascripts/fusioncharts.js')
+    script(src='javascripts/fusioncharts.charts.js')

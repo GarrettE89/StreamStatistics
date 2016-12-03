@@ -1,0 +1,22 @@
+extends layout
+
+
+
+block content
+  h1= title
+  p Welcome to #{title}
+  .jumbotron
+    .container
+      a(id='toTwitch' class='btn btn-primary btn-lg' href='https://api.twitch.tv/kraken/oauth2/authorize?response_type=token&client_id=19c3z7vu8rq9kycnmnmwyvd6qrk109o&redirect_uri=http://localhost&scope=user_read channel_subscriptions channel_feed_read') To Twitch
+  d#stats1.col-md-4.statsBox
+    p this is box one
+    button(id='getFollowers' ng-click="stats.getThings()") Get the things
+    div.col-md-12#chartContainer
+  d#stats2.col-md-4.statsBox
+    button(ng-click="stats.addThings()") Add Things
+  d#stats3.col-md-4.statsBox
+    form.simple-form
+        span.label Record ID:
+        input(type="text" ng-model="recordId")
+        button(type="submit" ng-click="stats.removeThings(recordId)") Remove the things
+  d.col-md-12 #{twitchResponse}
