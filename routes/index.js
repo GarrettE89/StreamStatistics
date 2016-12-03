@@ -20,7 +20,6 @@ router.get('/', function(req, response, next) {
 
   var user = 'garrette89';
   var pass = 'gej!1989';
-  mongoose.connect('mongodb://' + user + ':' + pass + '@jello.modulusmongo.net:27017/Quxah6aj');
     var options;
     options = {
         hostname: 'api.twitch.tv',
