@@ -5,7 +5,11 @@ var app = angular.module('stats', []);
 
 app.controller('StatsController', ['$http', '$scope', function($http, $scope){
     var init = function(){
-
+        try{
+            mongoose.connect('mongodb://' + user + ':' + pass + '@jello.modulusmongo.net:27017/Quxah6aj');
+        } catch(error){
+            console.log(error);
+        }
     };
     this.getFollowers = function(){
         $scope.followers = [];
