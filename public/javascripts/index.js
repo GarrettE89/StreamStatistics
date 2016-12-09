@@ -5,11 +5,7 @@ var app = angular.module('stats', []);
 
 app.controller('StatsController', ['$http', '$scope', function($http, $scope){
     var init = function(){
-        try{
-            mongoose.connect('mongodb://' + user + ':' + pass + '@jello.modulusmongo.net:27017/Quxah6aj');
-        } catch(error){
-            console.log(error);
-        }
+
     };
     this.getFollowers = function(){
         $scope.followers = [];
@@ -32,9 +28,13 @@ app.controller('StatsController', ['$http', '$scope', function($http, $scope){
             });
     };
 
-    this.addThings = function(){
-        $http.post('/addThings')
-            .success(function(){})
+    this.getTeam = function(teamName){
+        $http.get('/getTeam' + teamName)
+            .success(function(response){
+                $scope.userList = response;
+                console.log("Response: " + response);
+                console.log("User List: " + $scope.userList);
+            })
             .error(function(res){console.log(res.data)})
     };
 

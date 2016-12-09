@@ -6,6 +6,7 @@
 
 var app = require('../app');
 var debug = require('debug')('untitled:server');
+var mongoose = require('mongoose');
 var http = require('http');
 
 /**
@@ -25,10 +26,16 @@ var server = http.createServer(app);
  * Listen on provided port, on all network interfaces.
  */
 
-server.listen(port);
-server.on('error', onError);
-server.on('listening', onListening);
-
+var user = 'garrette89';
+var pass = 'gej!1989';
+mongoose.connect('mongodb://' + user + ':' + pass + '@jello.modulusmongo.net:27017/Quxah6aj');
+var db = mongoose.connection;
+db.on('error', console.error.bind(console, 'connection error:'));
+db.once('open', function(){
+  server.listen(port);
+  server.on('error', onError);
+  server.on('listening', onListening);
+});
 /**
  * Normalize a port into a number, string, or false.
  */

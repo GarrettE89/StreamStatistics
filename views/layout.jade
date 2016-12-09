@@ -2,13 +2,20 @@ doctype html
 html(ng-app="stats")
 
   head
+    meta(charset="utf-8")
+    meta(http-equiv="X-UA-Compatible" content="IE=edge")
+    meta(name="viewport" content="width=device-width, initial-scale=1")
     title= title
-    link(rel='stylesheet', href='/stylesheets/style.css')
     link(rel='stylesheet', href='/stylesheets/bootstrap.min.css')
     link(rel='stylesheet', href='/stylesheets/bootstrap-theme.min.css')
+    link(rel='stylesheet', href='/stylesheets/toolkit-inverse.min.css')
+    //link(rel='stylesheet', href='/stylesheets/toolkit-light.min.css')
+    link(rel='stylesheet', href='/stylesheets/style.css')
   body(ng-controller="StatsController as stats")
     block content
     script(src='javascripts/angular.min.js')
     script(src='javascripts/index.js')
     script(src='javascripts/fusioncharts.js')
     script(src='javascripts/fusioncharts.charts.js')
+    script(src='https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js')
+    script(src='javascripts/toolkit.min.js')

@@ -1,5 +1,5 @@
 body {
-  padding: 50px;
+  padding-top: 25px;
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
 }
 
@@ -7,7 +7,23 @@ a {
   color: #00B7FF;
 }
 
-.statsBox {
-  border: 1px solid #ddd;
-  background-color: lightblue;
+.dashhead-titles{
+  padding-left: 10px;
+}
+
+.main {
+  background-color: #7f7f7f;
+  color: #0a0b0d;
+  margin-left: 0;
+  border-radius: 15px;
+}
+
+.statsBoxLeft {
+  border-right-color: #9acfea;
+  border-right-style: solid;
+}
+
+.statsBoxRight {
+  border-left-color: white;
+  border-left-style: dashed;
 }
