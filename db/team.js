@@ -50,6 +50,11 @@ module.exports = {
             });
             //response.send(data);});
         });
+    },
+
+    getTeam: function(teamName) {
+       return teamModel.where({Name: teamName});
+
     }
 };
 

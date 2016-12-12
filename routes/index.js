@@ -3,47 +3,49 @@ var router = express.Router();
 var https = require('https');
 var mongoose = require('mongoose');
 var team = require('../db/team.js');
+var user = require('../db/user.js');
 
-var entryModel = mongoose.model('Demo', {
-    UserName: String,
-    FollowerCount: Number
-});
-var sessionModel = mongoose.model('Session',{
-    Streamer_Id: String,
-    SessionDate: Date,
-    Game: String,
-    Title: String,
-    ViewerIncrement: [],
-    FollowerIncrement: [],
-    SubscriberIncrement: []
-});
+// var entryModel = mongoose.model('Demo', {
+//     UserName: String,
+//     FollowerCount: Number
+// });
+// var sessionModel = mongoose.model('Session',{
+//     Streamer_Id: String,
+//     SessionDate: Date,
+//     Game: String,
+//     Title: String,
+//     ViewerIncrement: [],
+//     FollowerIncrement: [],
+//     SubscriberIncrement: []
+// });
 /* GET home page. */
 router.get('/', function(req, response, next) {
 
-    // var options;
-    // options = {
-    //     hostname: 'api.twitch.tv',
-    //     path: '/kraken/teams/ths',
-    //     headers: {
-    //         'Accept': 'application/vnd.twitchtv.v5+json',
-    //         'Client-ID': '19c3z7vu8rq9kycnmnmwyvd6qrk109o'
-    //     }
-    // };
-    //
-    // var data = https.get(options, function (res) {
-    //     var data = '';
-    //     //console.log(res);
-    //     res.setEncoding('utf8');
-    //     res.on("data", function (chunk) {
-    //         data += chunk;
-    //     });
-    //     res.on("end", function () {
-    //         //console.log("Data: " + data);
-    //         response.render('index', { title: 'Stream Statistics', twitchResponse: data });
-    //         //response.send(data);
-    //     });
-    //});
-    response.render('index', {title: 'Stream Statistics'});
+    var options;
+    options = {
+        hostname: 'api.twitch.tv',
+        path: '/kraken/teams/thelounge',
+        headers: {
+            'Accept': 'application/vnd.twitchtv.v5+json',
+            'Client-ID': '19c3z7vu8rq9kycnmnmwyvd6qrk109o'
+        }
+    };
+
+    var data = https.get(options, function (res) {
+        var data = '';
+        //console.log(res);
+        res.setEncoding('utf8');
+        res.on("data", function (chunk) {
+            data += chunk;
+        });
+        res.on("end", function () {
+            //console.log("Data: " + data);
+            //console.log(JSON.parse(data));
+            response.render('index', { title: 'Stream Statistics', twitchResponse: data});
+            //response.send(data);
+        });
+    });
+    //response.render('index', {title: 'Stream Statistics'});
 });
 
 
