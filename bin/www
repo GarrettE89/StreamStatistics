@@ -39,9 +39,16 @@ db.once('open', function(){
   server.on('listening', onListening);
   //console.log(gatherer.getAllUsers());
   gatherer.getAllUsers()
-      .then(function(result){
-        gatherer.getLiveUsers(result)
-      });
+      .then(function(result) {
+          return gatherer.getLiveUsers(result)
+      })
+          .then(function(data){
+            setTimeout(function(){
+                console.log("From Main: " + Date.now());
+            }, 1000);
+
+          });
+
 });
 /**
  * Normalize a port into a number, string, or false.

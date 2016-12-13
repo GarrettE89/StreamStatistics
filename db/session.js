@@ -10,7 +10,7 @@ var sessionModel = mongoose.model('Session',{
     SessionDate: Date,
     Game: String,
     Title: String,
-    ViewerIncrement: [],
-    FollowerIncrement: [],
-    SubscriberIncrement: []
+    ViewerCount: Number,
+    FollowerCount: Number,
+    SubscriberCount: Number
 });
