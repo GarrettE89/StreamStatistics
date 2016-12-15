@@ -7,11 +7,12 @@ var https = require('https');
 var team = require('../db/team.js');
 
 var userModel = mongoose.model('Users', {
-    _id: Number,
+    User_Id: Number,
     InsertDate: Date,
     Name: String,
     Password: String,
-    Token: String
+    Token: String,
+    IsActive: Boolean
 });
 
 module.exports = {
@@ -47,11 +48,12 @@ module.exports = {
                             //console.log(parsedData);
                             //console.log(parsedData.name);
                             var newUser = {
-                                _id: parsedData._id,
+                                User_Id: parsedData._id,
                                 InsertDate: Date.now(),
                                 Name: parsedData.name,
                                 Password: '',
-                                Token: ''
+                                Token: '',
+                                IsActive: true
                             };
                             userModel.create(newUser);
                         });
@@ -61,7 +63,23 @@ module.exports = {
         });
     },
 
-    getAllUsers: function(){
-        return userModel.where();
+    updateUsers: function(){
+        userModel.update({id: 22782},{$set: {IsActive: true}}).exec();
+    },
+
+    removeUsers: function(condition) {
+        userModel.remove(condition).exec();
+    },
+
+    getActiveUsers: function(){
+        return userModel.where({IsActive: true});
+    },
+
+    getUserById: function(userId){
+        return userModel.where({User_Id: userId}).exec(function(err, docs){
+            if(err)
+                console.log(err);
+            return docs;
+        });
     }
 };

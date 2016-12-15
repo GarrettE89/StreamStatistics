@@ -35,7 +35,7 @@ var liveUsers = function(userList){
             res.on("end", function () {
                 //console.log("New End");
                 var stream = JSON.parse(data);
-                if (stream.stream !== null){
+                if (stream.hasOwnProperty("stream") && stream.stream !== null && stream.stream !== undefined){
                     liveStream =  stream.stream.channel.name;
                     liveUsers.push(liveStream);
                     return liveUsers;
@@ -52,20 +52,21 @@ module.exports = {
             user.getAllUsers().exec(function(err, docs){
                 if(err)
                     console.log(err);
+                //console.log(docs);
                 return docs
             });
         }, 60000)
     },
 
-    getAllUsers : function() {
+    getActiveUsers : function() {
         return new Promise(function(resolve, reject) {
             setTimeout(function(){
-                resolve(user.getAllUsers().exec(function (err, docs) {
+                resolve(user.getActiveUsers().exec(function (err, docs) {
                     if (err)
                         console.log(err);
                     return docs;
                 }));
-            }, 3000)
+            })
         })
     },
 
